@@ -1,0 +1,31 @@
+% rebase('base.html', title=_('all-datasets'), nav='allcores.html')
+
+<section>
+  <table id=datasets>
+    <tr>
+      <th>Title</th>
+      <th>Type</th>
+    </tr>
+% for dataset in datasets:
+    <tr>
+      <td><a href='/{{lang}}/{{dataset['key']}}'>{{dataset['title']}}</a></td>
+      <td>{{_(dataset['type'])}}</td>
+    </tr>
+% end
+  </table>
+</section>
+
+
+<script>
+var tf = new TableFilter(document.getElementById("datasets"), {
+  base_path: "/static/",
+  alternate_rows: true,
+  col_types: ['string', 'string' ],
+  col_0: 'none',
+  col_1: 'select',
+  clear_filter_text: '- All -',
+  extensions: [{ name: 'sort' }]
+});
+tf.init();
+</script>
+

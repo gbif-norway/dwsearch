@@ -1,0 +1,34 @@
+<!doctype html>
+<meta charset=utf-8>
+<meta name=viewport content='width=512'>
+<link rel=stylesheet href=/static/dwsearch.css>
+<script src=/static/tablefilter.js></script>
+<title>{{title}}</title>
+
+<header>
+  % if get('back'):
+  <a class=back href='/{{lang}}'>{{_('back-to-list-of-datasets')}}</a>
+  % end
+  % if get('link'):
+  <h1><a href='/{{lang}}/{{link}}'>{{title}}</a></h1>
+  % else:
+  <h1>{{title}}</h1>
+  % end
+
+  % if get('nav'):
+  <nav>
+  % include(nav)
+  </nav>
+  % end
+</header>
+
+<main>
+{{!base}}
+</main>
+
+<footer>
+% for link in config['links']:
+  <a href='{{link['href']}}'>{{link['title']}}</a>
+% end
+</footer>
+

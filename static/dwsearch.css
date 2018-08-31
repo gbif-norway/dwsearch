@@ -1,0 +1,33 @@
+body { font: 16px/1.5 sans-serif; width: 100%; margin: 0; }
+
+form { display: flex; flex-wrap: wrap; background: #fafafa; padding: 1em; }
+fieldset { width: 30%; border: none; }
+fieldset legend { font-weight: bold; }
+fieldset label { display: inline-block; width: 9em; text-align: right; }
+form p.submit { width: 95%; text-align: right; }
+
+form legend { font-variant: small-caps; font-weight: normal; font-size: 12px; }
+form label { font-weight: bold; }
+form p { margin: 0 0 0.5em 0; }
+form label, form input { font-size: 12px; }
+
+table, table td, table th { border: 1px solid #aaa; border-collapse: collapse; }
+table { max-width: 100%; }
+table th { text-align: left; }
+table td, table th { padding: 4px; }
+
+footer { margin: 2em auto 0 auto; width: 75%; text-align: center; }
+footer a { margin: 0 1em; color: #000; }
+
+header { background: #333; color: #eee; }
+header h1, header nav { margin: 0 auto; width: 80%; font-weight: 100; }
+header a { color: #fff; text-decoration: none; margin-right: 1em; }
+header nav a { font-size: normal; }
+header nav p { margin: 0 0 0 0; padding-bottom: 0.2em; }
+header a.back { color: #ddd; font-size: small; margin-left: 2em; }
+
+
+main section { width: 80%; margin: 0 auto; position: relative; }
+main section.search { width: 100%; background: #fafafa; border-bottom: 1px solid #000; }
+main section.search form { width: 80%; margin: 0 auto; }
+

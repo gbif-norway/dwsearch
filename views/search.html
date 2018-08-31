@@ -1,0 +1,54 @@
+% rebase('base.html', back=True, link=uuid, title=meta.get('title', "All datasets"), nav='cores.html')
+
+<section class=search>
+  <form method=get>
+    % for name in core['forms']:
+      {{!Form(name, config['form'][name], request).html()}}
+    % end
+    <p class=submit><input type=submit value=Search>
+  </form>
+</section>
+
+
+<section class=results>
+  <p>{{results.hits.total}} hit(s)
+  % if False and 'bounds' in results.aggregations['viewport']:
+    / Bounds:
+    {{results.aggregations['viewport']['bounds']['bottom_right']['lat']}},{{results.aggregations['viewport']['bounds']['bottom_right']['lon']}}
+    –
+    {{results.aggregations['viewport']['bounds']['top_left']['lat']}},{{results.aggregations['viewport']['bounds']['top_left']['lon']}}
+  % end
+  
+  % if results.hits.total > (request.query.get('skip', 0) + 50):
+  <a href='?{{modqry(request.query, { 'skip': request.query.get('skip', 0) + 50 })}}'>
+    {{_('show')}} {{request.query.get('skip', 0)}} - {{min(results.hits.total, request.query.get('skip', 0) + 50)}}
+  </a>
+  % end
+  <table>
+    <tr>
+    % for term in core['results']:
+      <th>{{_(term['name'])}}</th>
+    % end 
+    </tr>
+    % for result in results:
+      <tr>
+        % for term in core['results']:
+          % if term['name'] in result:
+            % if 'link' in term:
+              <td>
+                <a href='{{term['link'] % result[term['name']]}}'>
+                  {{result[term['name']]}}
+                </a>
+              </td>
+            % else:
+              <td>{{result[term['name']]}}</td>
+            % end
+          % else:
+            <td></td>
+          % end
+        % end 
+      </tr>
+    % end 
+  </table>
+</section>
+

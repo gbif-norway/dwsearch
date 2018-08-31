@@ -1,0 +1,74 @@
+index:
+  resolver: dwc
+  datasets: datasets
+resolver: https://data.gbif.no/resolver/
+cookiekey: changeme
+hosts:
+  - { host: localhost }
+timeout: 360
+languages:
+  - ['en_US', 'english']
+form:
+  taxonomy:
+    - { name: kingdom, type: text }
+    - { name: family, type: text }
+    - { name: genus, type: text }
+    - { name: scientificName, type: text }
+  geography:
+    - { name: country, type: text }
+    - { name: stateProvince, type: text }
+    - { name: county, type: text }
+    - { name: locality, type: text }
+  general:
+    - { name: occurrenceID, type: text }
+    - { name: catalogNumber, type: text }
+    - { name: recordedBy, type: text }
+    - { name: year, type: text }
+  event:
+    - { name: eventID, type: text }
+    - { name: locationID, type: text }
+    - { name: country, type: text }
+    - { name: year, type: text }
+  measurement:
+    - { name: measurementID, type: text }
+    - { name: measurementType, type: text }
+cores:
+  taxon:
+    forms: [ taxonomy ]
+    results:
+      - { name: taxonID, link: "https://data.gbif.no/resolver/%s" }
+      - { name: kingdom }
+      - { name: genus }
+      - { name: scientificName }
+  occurrence:
+    forms: [ taxonomy, geography, general ]
+    results:
+      - { name: occurrenceID, link: "https://data.gbif.no/resolver/%s" }
+      - { name: catalogNumber }
+      - { name: scientificName }
+      - { name: recordedBy }
+      - { name: country }
+      - { name: locality }
+      - { name: year }
+  event:
+    forms: [ event ]
+    results:
+      - { name: eventID, link: "https://data.gbif.no/resolver/%s" }
+      - { name: eventDate }
+      - { name: country }
+  measurementorfact:
+    forms: [ measurement ]
+    results:
+      - { name: measurementID, link: "https://data.gbif.no/resolver/%s" }
+      - { name: measurementType }
+      - { name: measurementValue }
+search:
+  country: { type: prefix }
+  stateProvince: { type: fuzzy }
+  locality: { type: fuzzy }
+links:
+  - { title: GBIF.no, href: "https://gbif.no/" }
+  - { title: MUSIT, href: "https://unimus.no/" }
+  - { title: NHM Oslo, href: "https://nhm.uio.no/" }
+  - { title: UiB, href: "https://www.uib.no/" }
+
